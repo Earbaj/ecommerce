@@ -28,7 +28,9 @@ export class AuthService {
       password: hashedPassword,
     });
 
-    return { message: 'User registered successfully' };
+    return { message: 'User registered successfully',
+        data: newUser
+     };
   }
 
   // ২. লগইন লজিক
@@ -41,9 +43,11 @@ export class AuthService {
     }
 
     // JWT টোকেন তৈরি (পেলোড এ ইউজার আইডি এবং রোল থাকে)
-    const payload = { sub: user._id, email: user.email, role: user.role };
+    const payload = { id: user._id, email: user.email, role: user.role };
     return {
+      message:"Successfully loged in ",
       access_token: this.jwtService.sign(payload),
+      data:payload
     };
   }
 }
