@@ -210,6 +210,68 @@ This project is built with **NestJS** and uses **MongoDB** (via Mongoose). It in
 
 ---
 
+
+---
+
+### 3.1) Add or Create Product
+- **First Create Cetagory and copy the id**
+- **Endpoint:** `POST /products`
+- **Description:** Create Products Cetagory wise.
+- **Authentication:** Barerare Token required.
+
+**Success Response** (200):
+
+```json
+[
+  {
+  "title": "Samsung Galaxy S24",
+  "description": "Latest flagship phone",
+  "price": 1200,
+  "stock": 50,
+  "category": "cetagory id",
+  "images": ["image1.jpg"]
+  }
+]
+```
+
+---
+
+---
+
+### 3.2) See product
+- **Endpoint:** `GET /products`
+- **Description:** Create Products Cetagory wise.
+- **Authentication:** Barerare Token required.
+
+**Success Response** (200):
+
+```json
+[
+  {
+        "_id": "69b3cbeb4634575f95320110",
+        "title": "Samsung Galaxy S24",
+        "description": "Latest flagship phone",
+        "price": 1200,
+        "stock": 50,
+        "images": [
+            "image1.jpg"
+        ],
+        "category": {
+            "_id": "69b3ca78d5130813b99c2fdf",
+            "name": "Mobile",
+            "slug": "mobile"
+        },
+        "createdBy": "69b25577ce74c3751952ba72",
+        "createdAt": "2026-03-13T08:33:47.099Z",
+        "updatedAt": "2026-03-13T08:33:47.099Z",
+        "__v": 0
+    }
+]
+```
+
+---
+
+
 ## 🧩 Project Structure
 
 - `src/` – main source code
