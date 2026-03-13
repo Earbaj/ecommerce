@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { Product } from './schemas/product.schema';
@@ -22,6 +22,14 @@ export class ProductsService {
   }
 
   async findOne(id: string) {
-    return await this.productModel.findById(id).populate('category').exec();
+  const product = await this.productModel.findById(id)
+    .populate('category', 'name slug')
+    .populate('createdBy', 'email') // কোন এডমিন তৈরি করেছে তাও দেখা যাবে
+    .exec();
+
+  if (!product) {
+    throw new NotFoundException(`Product with ID ${id} not found`);
   }
+  return product;
+}
 }
