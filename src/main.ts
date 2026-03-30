@@ -6,6 +6,13 @@ import { join } from 'path';
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
+  // --- CORS এনাবেল করুন ---
+  app.enableCors({
+    origin: 'http://localhost:3001', // আপনার Next.js অ্যাপের ইউআরএল
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    credentials: true,
+  });
+  // -------------------------
   // Swagger কনফিগারেশন
   const config = new DocumentBuilder()
     .setTitle('My API Title')
@@ -27,6 +34,6 @@ async function bootstrap() {
   });
   // -------------------------
 
-  await app.listen(process.env.PORT ?? 3000);
+  await app.listen(process.env.PORT ?? 4000);
 }
 bootstrap();
