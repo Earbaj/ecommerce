@@ -271,6 +271,65 @@ This project is built with **NestJS** and uses **MongoDB** (via Mongoose). It in
 
 ---
 
+---
+
+### 3.3) Update Product
+- **Endpoint:** `PATCH /products/product id`
+- **Description:** Update Products Id wise.
+- **Authentication:** Barerare Token required.
+
+**Success Response** (200):
+
+**Response Body**
+```json
+[
+  {
+    "price": 1500,
+    "stock": 100
+  }
+]
+```
+
+**Response after Successfull Update**
+```json
+[
+  {
+    "_id": "69b3d299fd81efc3423866df",
+    "title": "Samsung Galaxy S24 ultra",
+    "description": "Latest flagship phone",
+    "price": 1500,
+    "stock": 100,
+    "images": [
+        "image1.jpg"
+    ],
+    "category": "69b3ca78d5130813b99c2fdf",
+    "createdBy": "69b25577ce74c3751952ba72",
+    "createdAt": "2026-03-13T09:02:17.218Z",
+    "updatedAt": "2026-03-30T06:12:27.958Z",
+    "__v": 0
+  }
+]
+```
+
+---
+
+### 3.3) Delete Product
+- **Endpoint:** `DELETE /products/product id`
+- **Description:** Delete Products Id wise.
+- **Authentication:** Barerare Token required.
+
+**Success Response** (200):
+
+**Response**
+```json
+[
+  {
+    "message": "Product deleted successfully"
+  }
+]
+```
+---
+
 
 ## 🧩 Project Structure
 
