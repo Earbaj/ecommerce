@@ -330,6 +330,46 @@ This project is built with **NestJS** and uses **MongoDB** (via Mongoose). It in
 ```
 ---
 
+### 3.4) Upload Product Image
+- **Endpoint:** `POST /products/upload`
+- **1**. First Login: Login as a admin and get token
+- **2**. New Request: Open new tab on Postman
+- **3**. Method & URL: POST and URL http://localhost:3000/products/upload
+- **4**. Authorization: Bearer Token Admin Token
+- **5**. Body: - select form-data
+
+- **Key:** type image (Select file from Type dropdown)
+
+- **Value:** Choose Files and Select Image
+
+- **6**. Press Send
+
+**Success Response** (200):
+
+**Response**
+```json
+[
+  {
+  "imageUrl": "/uploads/image-1710321520000-123456789.png"
+  }
+]
+```
+- **1**. Copy this imageUrl
+- **2**. And paste it before product creat
+
+**Body**
+```json
+[
+  {
+  "title": "New Product with Image",
+  "price": 500,
+  "images": ["/uploads/image-1710321520000-123456789.png"],
+  "category": "..."
+  }
+]
+```
+
+---
 
 ## 🧩 Project Structure
 
