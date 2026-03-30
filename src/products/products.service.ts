@@ -32,4 +32,21 @@ export class ProductsService {
   }
   return product;
 }
+
+// প্রোডাক্ট আপডেট করা
+async update(id: string, updateProductDto: any) {
+  const product = await this.productModel.findById(id);
+  if (!product) throw new NotFoundException('Product not found');
+
+  // সিকিউরিটি: শুধুমাত্র যে এডমিন তৈরি করেছে সে বা সুপার এডমিন আপডেট করতে পারবে (অপশনাল)
+  return await this.productModel.findByIdAndUpdate(id, updateProductDto, { new: true }).exec();
+}
+
+// প্রোডাক্ট ডিলিট করা
+async remove(id: string) {
+  const result = await this.productModel.findByIdAndDelete(id).exec();
+  if (!result) throw new NotFoundException('Product not found');
+  return { message: 'Product deleted successfully' };
+}
+
 }

@@ -1,4 +1,4 @@
-import { Controller, Post, Get, Body, UseGuards, Req, Param,UnauthorizedException } from '@nestjs/common';
+import { Controller, Post, Get, Body, UseGuards, Req, Param, UnauthorizedException, Delete, Patch } from '@nestjs/common';
 import { ProductsService } from './products.service';
 import { CreateProductDto } from './dto/create-product.dto';
 import { AuthGuard } from '@nestjs/passport';
@@ -7,7 +7,7 @@ import { Roles } from 'src/auth/decorators/roles.decorator';
 
 @Controller('products')
 export class ProductsController {
-  constructor(private readonly productsService: ProductsService) {}
+  constructor(private readonly productsService: ProductsService) { }
 
   @Post()
   @UseGuards(AuthGuard('jwt'), RolesGuard) // প্রোডাক্ট অ্যাড করতে লগইন মাস্ট
@@ -15,9 +15,9 @@ export class ProductsController {
   create(@Body() createProductDto: CreateProductDto, @Req() req) {
     console.log('Log from Controller - User Object:', req.user);
 
-  if (!req.user || !req.user.userId) {
-    throw new UnauthorizedException('User not found in request');
-  }
+    if (!req.user || !req.user.userId) {
+      throw new UnauthorizedException('User not found in request');
+    }
     return this.productsService.create(createProductDto, req.user.userId);
   }
 
@@ -30,4 +30,22 @@ export class ProductsController {
   findOne(@Param('id') id: string) {
     return this.productsService.findOne(id);
   }
+
+
+  // আপডেট রুট (Admin Only)
+  @Patch(':id')
+  @UseGuards(AuthGuard('jwt'), RolesGuard)
+  @Roles('admin')
+  update(@Param('id') id: string, @Body() updateProductDto: any) {
+    return this.productsService.update(id, updateProductDto);
+  }
+
+  // ডিলিট রুট (Admin Only)
+  @Delete(':id')
+  @UseGuards(AuthGuard('jwt'), RolesGuard)
+  @Roles('admin')
+  remove(@Param('id') id: string) {
+    return this.productsService.remove(id);
+  }
+
 }
