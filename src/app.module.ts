@@ -27,7 +27,7 @@ import { CartModule } from './cart/cart.module';
       }),
     }),
     UserModule, AuthModule, CategoriesModule, ProductsModule, CartModule],
-  controllers: [AppController, CartController],
-  providers: [AppService, CartService],
+  controllers: [AppController],
+  providers: [AppService],
 })
 export class AppModule {}
