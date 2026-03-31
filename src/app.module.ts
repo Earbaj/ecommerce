@@ -7,6 +7,9 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
 import { CategoriesModule } from './categories/categories.module';
 import { ProductsModule } from './products/products.module';
+import { CartService } from './cart/cart.service';
+import { CartController } from './cart/cart.controller';
+import { CartModule } from './cart/cart.module';
 
 @Module({
   imports: [
@@ -23,8 +26,8 @@ import { ProductsModule } from './products/products.module';
         uri: configService.get<string>('MONGODB_URI'),
       }),
     }),
-    UserModule, AuthModule, CategoriesModule, ProductsModule],
-  controllers: [AppController],
-  providers: [AppService],
+    UserModule, AuthModule, CategoriesModule, ProductsModule, CartModule],
+  controllers: [AppController, CartController],
+  providers: [AppService, CartService],
 })
 export class AppModule {}
