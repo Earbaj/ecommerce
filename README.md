@@ -419,6 +419,48 @@ This project is built with **NestJS** and uses **MongoDB** (via Mongoose). It in
 ```
 ---
 
+
+### 3.6) Cart Product
+- **Endpoint:** `POST /cart/add`
+- **Description:** Add product to cart.
+- **Authentication:** Barerare Token required.
+
+**Success Response** (200):
+
+**Response Body**
+```json
+[
+  {
+    "productId": "69ca1a8c2eb1f039033d2015", 
+    "quantity": 2
+  }
+]
+```
+
+**Response after Successfull Update**
+```json
+[
+  {
+    "userId": "69ca4b4c633694275fd1e96f",
+    "items": [
+        {
+            "productId": "69ca1a8c2eb1f039033d2015",
+            "quantity": 2,
+            "price": 14000,
+            "_id": "69cb6c4ae75dcb053d996614"
+        }
+    ],
+    "totalPrice": 28000,
+    "_id": "69cb6c4ae75dcb053d996613",
+    "createdAt": "2026-03-31T06:40:10.965Z",
+    "updatedAt": "2026-03-31T06:40:10.965Z",
+    "__v": 0
+}
+]
+```
+
+---
+
 ## 🧩 Project Structure
 
 - `src/` – main source code
