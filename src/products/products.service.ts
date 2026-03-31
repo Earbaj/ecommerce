@@ -17,7 +17,7 @@ export class ProductsService {
   }
 
   async findAll(query: any) {
-  const { search, category, minPrice, maxPrice, page = 1, limit = 10 } = query;
+  const { search, category, minPrice, maxPrice, page = 1, limit = 10, sortBy = 'createdAt', sortOrder = 'desc'} = query;
 
   // ১. ফিল্টার অবজেক্ট তৈরি
   const filter: any = {};
@@ -43,12 +43,16 @@ export class ProductsService {
   const skip = (Number(page) - 1) * Number(limit);
 
   // ৩. কুয়েরি এক্সিকিউট করা
+  // সর্টিং অবজেক্ট তৈরি
+  const sortOptions: any = {};
+  sortOptions[sortBy] = sortOrder === 'desc' ? 1 : -1;
+
   const products = await this.productModel
     .find(filter)
     .populate('category', 'name slug')
     .limit(Number(limit))
     .skip(skip)
-    .sort({ createdAt: -1 }) // নতুন প্রোডাক্ট আগে দেখাবে
+    .sort(sortOptions) // এখানে ডাইনামিক সর্ট হবে
     .exec();
 
   // মোট কয়টি প্রোডাক্ট আছে তা জানা (Frontend-এ প্যাগিনেশনের জন্য লাগে)
