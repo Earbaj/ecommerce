@@ -380,6 +380,8 @@ This project is built with **NestJS** and uses **MongoDB** (via Mongoose). It in
 - **3**. Only for product category wise search and pagination data and page limit for each page
 - **Endpoint:** `GET /products?search=phone&minPrice=100&page=1&limit=10`
 - **4**. Combine them all togather 
+- **Endpoint:** `GET /products?sortBy=price&sortOrder=ase`
+- **5**. Sort products by assending and decending order  
 
 **Success Response** (200):
 
