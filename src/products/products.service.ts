@@ -16,10 +16,52 @@ export class ProductsService {
     return await newProduct.save(); 
   }
 
-  async findAll() {
-    // .populate('category') দিলে ক্যাটাগরির সব ডিটেইলস চলে আসবে (যেমন রিলেশনাল ডাটাবেসে হয়)
-    return await this.productModel.find().populate('category', 'name slug').exec();
+  async findAll(query: any) {
+  const { search, category, minPrice, maxPrice, page = 1, limit = 10 } = query;
+
+  // ১. ফিল্টার অবজেক্ট তৈরি
+  const filter: any = {};
+
+  // সার্চ লজিক (Case-insensitive search)
+  if (search) {
+    filter.title = { $regex: search, $options: 'i' };
   }
+
+  // ক্যাটাগরি ফিল্টার
+  if (category) {
+    filter.category = category;
+  }
+
+  // দামের রেঞ্জ ফিল্টার (Min/Max)
+  if (minPrice || maxPrice) {
+    filter.price = {};
+    if (minPrice) filter.price.$gte = Number(minPrice);
+    if (maxPrice) filter.price.$lte = Number(maxPrice);
+  }
+
+  // ২. প্যাগিনেশন লজিক
+  const skip = (Number(page) - 1) * Number(limit);
+
+  // ৩. কুয়েরি এক্সিকিউট করা
+  const products = await this.productModel
+    .find(filter)
+    .populate('category', 'name slug')
+    .limit(Number(limit))
+    .skip(skip)
+    .sort({ createdAt: -1 }) // নতুন প্রোডাক্ট আগে দেখাবে
+    .exec();
+
+  // মোট কয়টি প্রোডাক্ট আছে তা জানা (Frontend-এ প্যাগিনেশনের জন্য লাগে)
+  const total = await this.productModel.countDocuments(filter);
+
+  return {
+    total,
+    page: Number(page),
+    limit: Number(limit),
+    totalPages: Math.ceil(total / limit),
+    products,
+  };
+}
 
   async findOne(id: string) {
   const product = await this.productModel.findById(id)

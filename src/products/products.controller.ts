@@ -1,4 +1,4 @@
-import { Controller, Post, Get, Body, UseGuards, Req, Param, UnauthorizedException, Delete, Patch, UseInterceptors, UploadedFile, BadRequestException } from '@nestjs/common';
+import { Controller, Post, Get, Body, UseGuards, Req, Param, UnauthorizedException, Delete, Patch, UseInterceptors, UploadedFile, BadRequestException, Query } from '@nestjs/common';
 import { ProductsService } from './products.service';
 import { CreateProductDto } from './dto/create-product.dto';
 import { AuthGuard } from '@nestjs/passport';
@@ -61,8 +61,8 @@ export class ProductsController {
   }
 
   @Get()
-  findAll() {
-    return this.productsService.findAll();
+  findAll(@Query() query: any) {
+    return this.productsService.findAll(query);
   }
 
   @Get(':id')
