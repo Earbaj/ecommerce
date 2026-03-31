@@ -371,6 +371,52 @@ This project is built with **NestJS** and uses **MongoDB** (via Mongoose). It in
 
 ---
 
+### 3.5) Filter Product
+- **Endpoint:** `GET /products?search=samsung`
+- **1**. Only for search Product by name wise
+- **Endpoint:** `GET /products?minPrice=500&maxPrice=2000`
+- **2**. Only for Product whose min and max price are between 500 and 2000
+- **Endpoint:** `GET /products?category=CATEGORY_ID&page=1&limit=5`
+- **3**. Only for product category wise search and pagination data and page limit for each page
+- **Endpoint:** `GET /products?search=phone&minPrice=100&page=1&limit=10`
+- **4**. Combine them all togather 
+
+**Success Response** (200):
+
+**Response**
+```json
+[
+  {
+    "total": 1,
+    "page": 1,
+    "limit": 10,
+    "totalPages": 1,
+    "products": [
+        {
+            "_id": "69ca1a8c2eb1f039033d2015",
+            "title": "Samsung Galaxy S24 ultra",
+            "description": "Latest flagship phone",
+            "price": 14000,
+            "stock": 50,
+            "images": [
+                "https://images.rawpixel.com/image_800/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIyLTExL3JtMzYyLTAxYS1tb2NrdXAuanBn.jpg"
+            ],
+            "category": {
+                "_id": "69b3ca78d5130813b99c2fdf",
+                "name": "Mobile",
+                "slug": "mobile"
+            },
+            "createdBy": "69b25577ce74c3751952ba72",
+            "createdAt": "2026-03-30T06:39:08.741Z",
+            "updatedAt": "2026-03-30T06:39:08.741Z",
+            "__v": 0
+        }
+    ]
+}
+]
+```
+---
+
 ## 🧩 Project Structure
 
 - `src/` – main source code
