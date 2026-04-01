@@ -455,7 +455,41 @@ This project is built with **NestJS** and uses **MongoDB** (via Mongoose). It in
     "createdAt": "2026-03-31T06:40:10.965Z",
     "updatedAt": "2026-03-31T06:40:10.965Z",
     "__v": 0
-}
+  }
+]
+```
+
+- **Endpoint:** `GET /cart`
+- **Description:** Add product to cart.
+- **Authentication:** Barerare Token required.
+
+**Success Response** (200):
+
+**Response after Successfull Update**
+```json
+[
+  {
+    "_id": "69ccad82e2dddb56fa39d4a8",
+    "userId": "69ca4b4c633694275fd1e96f",
+    "items": [
+        {
+            "productId": {
+                "_id": "69ca1a8c2eb1f039033d2015",
+                "title": "Samsung Galaxy S24 ultra",
+                "images": [
+                    "https://images.rawpixel.com/image_800/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIyLTExL3JtMzYyLTAxYS1tb2NrdXAuanBn.jpg"
+                ]
+            },
+            "quantity": 2,
+            "price": 14000,
+            "_id": "69ccad82e2dddb56fa39d4a9"
+        }
+    ],
+    "totalPrice": 28000,
+    "createdAt": "2026-04-01T05:30:42.007Z",
+    "updatedAt": "2026-04-01T05:30:42.007Z",
+    "__v": 0
+  }
 ]
 ```
 
