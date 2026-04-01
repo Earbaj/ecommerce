@@ -10,6 +10,7 @@ import { ProductsModule } from './products/products.module';
 import { CartService } from './cart/cart.service';
 import { CartController } from './cart/cart.controller';
 import { CartModule } from './cart/cart.module';
+import { OrdersModule } from './orders/orders.module';
 
 @Module({
   imports: [
@@ -26,7 +27,7 @@ import { CartModule } from './cart/cart.module';
         uri: configService.get<string>('MONGODB_URI'),
       }),
     }),
-    UserModule, AuthModule, CategoriesModule, ProductsModule, CartModule],
+    UserModule, AuthModule, CategoriesModule, ProductsModule, CartModule, OrdersModule],
   controllers: [AppController],
   providers: [AppService],
 })

@@ -8,7 +8,7 @@ async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
   // --- CORS এনাবেল করুন ---
   app.enableCors({
-    origin: 'http://localhost:3001', // আপনার Next.js অ্যাপের ইউআরএল
+    origin: 'http://localhost:3000', // আপনার Next.js অ্যাপের ইউআরএল
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     credentials: true,
   });
