@@ -537,6 +537,66 @@ This project is built with **NestJS** and uses **MongoDB** (via Mongoose). It in
 
 ---
 
+### 3.8) Review Product
+- **Endpoint:** `POST /reviews/প্রোডাক্ট-আইডি`
+- **Description:** Post review about the product.
+- **Authentication:** Barerare Token required.
+
+**Success Response** (200):
+
+**Response Body**
+```json
+[
+  {
+    "rating": 4, 
+    "comment": "Excellent product!"
+  }
+]
+```
+
+**Response after Successfull Review**
+```json
+[
+  {
+    "productId": "69ca1a8c2eb1f039033d2015",
+    "userId": "69ca4b4c633694275fd1e96f",
+    "rating": 4,
+    "comment": "Excellent product!",
+    "_id": "69ccba1637f6be851caed8b3",
+    "createdAt": "2026-04-01T06:24:22.525Z",
+    "updatedAt": "2026-04-01T06:24:22.525Z",
+    "__v": 0
+  }
+]
+```
+
+- **Endpoint:** `GET /reviews/প্রোডাক্ট-আইডি`
+- **Description:** Get all review about the product.
+- **Authentication:** Barerare Token required.
+
+**Success Response** (200):
+
+**Response after Successfull Review**
+```json
+[
+  {
+        "_id": "69ccb9da5195bfbe935fc792",
+        "productId": "69ca1a8c2eb1f039033d2015",
+        "userId": {
+            "_id": "69ca4b4c633694275fd1e96f",
+            "email": "admin2@example.com"
+        },
+        "rating": 5,
+        "comment": "Excellent product!",
+        "createdAt": "2026-04-01T06:23:22.043Z",
+        "updatedAt": "2026-04-01T06:23:22.043Z",
+        "__v": 0
+  }
+]
+```
+
+---
+
 ## 🧩 Project Structure
 
 - `src/` – main source code
