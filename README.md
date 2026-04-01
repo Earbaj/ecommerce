@@ -334,7 +334,7 @@ This project is built with **NestJS** and uses **MongoDB** (via Mongoose). It in
 - **Endpoint:** `POST /products/upload`
 - **1**. First Login: Login as a admin and get token
 - **2**. New Request: Open new tab on Postman
-- **3**. Method & URL: POST and URL http://localhost:3000/products/upload
+- **3**. Method & URL: POST and URL /products/upload
 - **4**. Authorization: Bearer Token Admin Token
 - **5**. Body: - select form-data
 
