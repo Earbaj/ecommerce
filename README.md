@@ -603,8 +603,16 @@ This project is built with **NestJS** and uses **MongoDB** (via Mongoose). It in
   - `auth/` – authentication module (signup/login/jwt)
   - `categories/` – category module + DTOs + schemas
   - `user/` – user schema + module (currently minimal)
+  - `cart/` – chart schema + module
+  - `orders/` – orders schema + module
+  - `products/` – products schema + module + dto
+  - `reviews/` – review schema + module
   - `main.ts` – application bootstrap + Swagger setup
 
+---
+
+## Project Structure
+ - postman Link – https://cloudy-station-724258.postman.co/workspace/Demo~df8629d6-8cb6-4c03-b0e4-f9a3b8a8a384/collection/32127421-ba323616-3869-43b2-a2d3-787fc520c1c8?action=share&source=copy-link&creator=32127421
 ---
 
 ## 🧪 Tests
