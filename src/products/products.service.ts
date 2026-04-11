@@ -85,7 +85,7 @@ async update(id: string, updateProductDto: any) {
   if (!product) throw new NotFoundException('Product not found');
 
   // সিকিউরিটি: শুধুমাত্র যে এডমিন তৈরি করেছে সে বা সুপার এডমিন আপডেট করতে পারবে (অপশনাল)
-  return await this.productModel.findByIdAndUpdate(id, updateProductDto, { new: true }).exec();
+  return await this.productModel.findByIdAndUpdate(id, updateProductDto, { returnDocument: 'after' }).exec();
 }
 
 // প্রোডাক্ট ডিলিট করা
